@@ -42,7 +42,7 @@ function formatDate(date) {
 }
 function searchCity(city) {
   let apiKey = "6e4744f50a4o233acde7cb8355a181t3";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(refreshWeather);
 }
 
@@ -69,7 +69,7 @@ function displayForecast(response) {
     let forecastHtml = "";
     
     response.data.daily.forEach(function (day, index) {
-        if (index < 5) {
+        if (index < 6) {
         forecastHtml =
           forecastHtml +
           `
