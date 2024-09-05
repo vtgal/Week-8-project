@@ -13,7 +13,7 @@ function refreshWeather(response) {
   timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} mph`;
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
     
@@ -32,8 +32,11 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
-  let day = days[date.getDay()];
 
+  let day = days[date.getDay()];
+if (hours > 12) {
+    hours = hours - 12;
+}
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
@@ -79,9 +82,9 @@ function displayForecast(response) {
             <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
             <div class="weather-forecast-temperatures"> 
                 <div class="weather-forecast-temperature">
-                    <strong>${Math.round(day.temperature.maximum)}°</strong>
+                    <strong>${Math.round(day.temperature.maximum)}° </strong>
                 </div>
-                 <div class="weather-forecast-temperature">${Math.round(
+                 <div class="weather-forecast-temperature"> ${Math.round(
                    day.temperature.minimum
                  )}°</div>
              </div>
