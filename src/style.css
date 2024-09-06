@@ -1,5 +1,5 @@
 body {
-  background-color:rgb(225, 220, 230);
+  background-color:rgb(201, 190, 211);
     font-family: "Roboto", sans-serif;
 }
 
@@ -78,7 +78,6 @@ main {
 .weather-app-temperature {
     font-size: 80px;
     font-weight: bold;
-    margin-left: 10px;
     line-height: 88px;
     
    
