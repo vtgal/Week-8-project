@@ -13,7 +13,7 @@ function refreshWeather(response) {
   timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  windSpeedElement.innerHTML = `${response.data.wind.speed} mph`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed}mph`;
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
     
@@ -34,9 +34,8 @@ function formatDate(date) {
   ];
 
   let day = days[date.getDay()];
-if (hours > 12) {
-    hours = hours - 12;
-}
+
+
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
@@ -52,6 +51,8 @@ function searchCity(city) {
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
+ 
+ 
 
   searchCity(searchInput.value);
 }
@@ -68,23 +69,24 @@ function getForecast(city) {
     axios(apiUrl).then(displayForecast);
 }
 
+
 function displayForecast(response) {
     let forecastHtml = "";
     
     response.data.daily.forEach(function (day, index) {
-        if (index < 6) {
+        if (index < 5) {
         forecastHtml =
           forecastHtml +
-          `
-        <div class="weather-forecast-day">
+          
+        `<div class="weather-forecast-day">
             <div class="weather-forecast-date">${formatDay(day.time)}</div>
 
             <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
             <div class="weather-forecast-temperatures"> 
                 <div class="weather-forecast-temperature">
-                    <strong>${Math.round(day.temperature.maximum)}° </strong>
+                    <strong>${Math.round(day.temperature.maximum)}°</strong>
                 </div>
-                 <div class="weather-forecast-temperature"> ${Math.round(
+                <div class="weather-forecast-temperature">${Math.round(
                    day.temperature.minimum
                  )}°</div>
              </div>
@@ -99,5 +101,5 @@ function displayForecast(response) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Paris");
+searchCity("Daphne");
 
